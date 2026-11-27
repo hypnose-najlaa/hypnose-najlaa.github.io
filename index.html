@@ -596,8 +596,8 @@ body::after{content:"";position:fixed;inset:-50%;z-index:140;pointer-events:none
     <div>
       <span class="label rv" data-i="w_eb">Ici ou ailleurs</span>
       <h2 class="rv d1" style="margin-top:22px"><span data-i="w_h">Où que vous soyez</span><span class="sub" data-i="w_sub">Séances en ligne, partout dans le monde</span></h2>
-      <div class="cities rv d1" id="cities"><span>Casablanca</span><span>Paris</span><span>Londres</span><span>Genève</span><span>Dubaï</span><span>Montréal</span></div>
-      <div class="langs rv d2"><span>Français</span><span>English</span></div>
+      <div class="cities rv d1" id="cities"><span>Casablanca</span><span>Paris</span><span data-i="ci1">Londres</span><span data-i="ci2">Genève</span><span data-i="ci3">Dubaï</span><span data-i="ci4">Montréal</span></div>
+      <div class="langs rv d2"><span data-i="lg1">Français</span><span>English</span></div>
       <p class="p rv d2" data-i="w_p">Le même accompagnement qu'au cabinet, depuis chez vous, à l'horaire qui vous convient.</p>
       <ul>
         <li class="rv-l d1" data-i="w1">Un endroit calme où vous ne serez pas dérangé</li>
@@ -635,7 +635,7 @@ body::after{content:"";position:fixed;inset:-50%;z-index:140;pointer-events:none
       <div class="c-list">
         <div class="c-item rv-l d1"><div class="ring"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a1 1 0 0 1-1 1A16 16 0 0 1 4 5a1 1 0 0 1 1-1"/></svg></div><div><small>WhatsApp</small><a class="wa-link" href="#" target="_blank" rel="noopener">+212 661 065 001</a></div></div>
         <div class="c-item rv-l d2"><div class="ring"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="5" width="18" height="14" rx="1"/><path d="m3 6 9 7 9-7"/></svg></div><div><small>E-mail</small><a href="mailto:najlaa.hachami@yahoo.com">najlaa.hachami@yahoo.com</a></div></div>
-        <div class="c-item rv-l d3"><div class="ring"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 21s-7-6-7-11a7 7 0 0 1 14 0c0 5-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg></div><div><small data-i="ct_addr">Cabinet</small><span>31 Signature Living, 2<sup>e</sup> étage, n° 23 · Casablanca</span></div></div>
+        <div class="c-item rv-l d3"><div class="ring"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 21s-7-6-7-11a7 7 0 0 1 14 0c0 5-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg></div><div><small data-i="ct_addr">Cabinet</small><span data-i="addr">31 Signature Living, 2<sup>e</sup> étage, n° 23 · Casablanca</span></div></div>
       </div>
       <div class="rv d3" style="display:flex;flex-wrap:wrap;gap:14px">
         <a class="btn btn-gold wa-link mag" href="#" target="_blank" rel="noopener"><span data-i="ct_b">Écrire sur WhatsApp</span><svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 12h15M14 6l6 6-6 6"/></svg></a>
@@ -703,56 +703,56 @@ en:{step:'Question',of:'of',back:'← Back',
   {q:'For how long?',h:'There is no right or wrong answer.',o:[['weeks','time','A few weeks'],['months','time','A few months'],['years','time','Several years']]},
   {q:'Where do you feel it most?',h:'Where it takes up the most space.',two:1,o:[['sleep','moon','In my sleep'],['body','body','In my body'],['relations','people','In my relationships'],['work','work','In my work']]},
   {q:'How would you prefer to be supported?',h:'Both formats offer the same support.',two:1,o:[['office','home','In the practice, Casablanca'],['online','screen','Online, from home']]},
-  {q:'In which language?',h:'Najlaa works in French and English.',two:1,o:[['fr','globe','Français'],['en','globe','English']]}
+  {q:'In which language?',h:'Najlaa works in French and English.',two:1,o:[['fr','globe','French'],['en','globe','English']]}
  ],
  res:{
-  addiction:['Letting go of a habit','Gently','What you are living is not a lack of willpower. Together, we look for the need behind this habit, to help you take back control.'],
-  anxiety:['Finding calm again','Leaving alert mode','A mind that never stops ends up tiring the body. Hypnosis helps you return to a state of calm and inner safety.'],
+  addiction:['Letting go of a habit','Gently','What you are going through is not a lack of willpower. Together, we look for the need behind this habit, to help you take back control.'],
+  anxiety:['Finding calm again','Switching off alert mode','A mind that never stops ends up tiring the body. Hypnosis helps you return to a state of calm and inner safety.'],
   trauma:['Soothing the past','At your own pace','Hypnosis does not erase the past. It helps you soothe it, step by step, and turn it into strength for the future.'],
-  emotions:['Welcoming what cannot be seen','You are not alone','What you carry in silence deserves to be heard. Gentle support, alongside medical care when needed.'],
+  emotions:['Making room for what goes unseen','You are not alone','What you carry in silence deserves to be heard. Gentle support, alongside medical care when needed.'],
   confidence:['Regaining confidence','Your resources are there','Together, we reconnect with your resources so you can move forward with more serenity and drive.']
  },
  focus:{sleep:'Particular attention will be given to your sleep.',body:'Particular attention will be given to what your body expresses.',relations:'Particular attention will be given to your relationships.',work:'Particular attention will be given to your work-life balance.'},
  mode:{office:'In the practice, Casablanca',online:'Online, wherever you are'},
- yours:'Your support',bref:'In short',fmt:'Format',lang:'Language',sess:'Session of about 2 hours',
+ yours:'Your path',bref:'In short',fmt:'Format',lang:'Language',sess:'Session of about 2 hours',
  send:'Send my answers to Najlaa',again:'Start again',
- disc:'This questionnaire is not a diagnosis. It simply helps you put words to what you are living.',
- msg:a=>`Hello Najlaa, I took the questionnaire on your website.\n• What weighs on me: ${a[0]}\n• For: ${a[1]}\n• I feel it mostly: ${a[2]}\n• Format: ${a[3]}\n• Language: ${a[4]}\nI would like a first conversation.`},
+ disc:'This questionnaire is not a diagnosis. It simply helps you put into words what you are going through.',
+ msg:a=>`Hello Najlaa, I took the questionnaire on your website.\n• What weighs on me: ${a[0]}\n• How long: ${a[1]}\n• I feel it mostly: ${a[2]}\n• Format: ${a[3]}\n• Language: ${a[4]}\nI would like a first conversation.`},
 
 };
 const T={
-en:{role:'Hypnotherapist',n1:'Approach',n2:'Support',n5:'Questionnaire',n3:'The session',n4:'Online',cta:'Book a session',
+en:{role:'Hypnotherapist',n1:'Approach',n2:'How I help',n5:'Questionnaire',n3:'The session',n4:'Online',cta:'Book a session',
 h_eb:'Hypnotherapist · Casablanca &amp; online',h1:'Free your mind, <em>return to what matters.</em>',h_sc:'Reconnect, release, transform.',
 h_p:'Discreet, personalised support to help you find your inner peace again.',h_b2:'Take the questionnaire',
 b_eb:'Practice &amp; online',
 a_eb:'My approach',a_h:'A space designed for you',a_sub:'And you alone',
-a_p1:'My name is Najlaa Hachami. I work with demanding, often highly solicited people who silently carry a fatigue, a habit or a story that has become too heavy.',
+a_p1:'My name is Najlaa Hachami. I work with demanding, often much in-demand people who silently carry a fatigue, a habit or a story that has become too heavy.',
 a_p2:'Nothing happens here without your consent. You remain aware, present and in control. Together, we go to the source, gently and at your own pace.',
-p1h:'Caring listening',p1p:'A safe space, free of judgement.',p2h:'Modern hypnosis',p2p:'Gentle techniques grounded in neuroscience.',p3h:'Tailor-made',p3p:'Every person is unique, and so is every session.',p4h:'In depth',p4p:'Working on causes, not only symptoms.',
-s_eb:'Support',s_h:'Hypnosis can help you',s_sub:'A gentle path towards change',
+p1h:'Compassionate listening',p1p:'A safe space, free of judgement.',p2h:'Modern hypnosis',p2p:'Gentle techniques grounded in neuroscience.',p3h:'Tailor-made',p3p:'Every person is unique, and so is every session.',p4h:'In depth',p4p:'Working on causes, not only symptoms.',
+s_eb:'How I help',s_h:'Hypnosis can help you',s_sub:'A gentle path towards change',
 c1h:'Addictions',c1p:'Tobacco, screens, work, sugar, shopping, emotional dependency. It is not a lack of willpower: behind every habit lies a need.',
 c2h:'Trauma &amp; the past',c2p:'Hypnosis does not erase the past. It helps you soothe it, and turn it into strength for the future.',
-c3h:'Anxiety &amp; stress',c3p:'A mind that never stops, a body always on alert. Find calm again, for good.',
-c4h:'Emotions',c4p:'What cannot be seen but is lived every day. Gentle support, alongside medical care when needed.',
+c3h:'Anxiety &amp; stress',c3p:'A mind that never stops, a body always on alert. Find your calm again.',
+c4h:'Emotions',c4p:'What goes unseen but is felt every day. Gentle support, alongside medical care when needed.',
 c5h:'Self-confidence',c5p:'Reconnect with your resources, your drive and a life that feels like yours.',
-more:'Take stock →',c6s:'Not on the list?',c6p:"Let's talk, in complete confidence.",write:'Write to me',
-qz_eb:'Questionnaire',qz_h:'Which support is right for you?',qz_sub:'5 questions · 1 minute',qz_p:'Take a minute to put words to what you are living. At the end, discover the support that suits you.',qz_cap:'I am here to support you.',qz_cap2:'Your answers stay on your device.',
+more:'Find out more →',c6s:'Not on the list?',c6p:"Let's talk, in complete confidence.",write:'Write to me',
+qz_eb:'Questionnaire',qz_h:'Which approach is right for you?',qz_sub:'5 questions · 1 minute',qz_p:'Take a minute to put into words what you are going through. At the end, discover the approach that suits you.',qz_cap:'I am here to support you.',qz_cap2:'Your answers stay on your device.',
 sm_eb:'Another way to care for yourself',sm_p:'You have achieved everything on the outside. <em>It is time to take care of the inside.</em>',sm_sc:'Let go of what holds you back.',
 q:'Hypnosis is a journey within, to rediscover your resources and your balance.',
 se_eb:'The session',se_h:'How does a session work?',se_sub:'What really happens, step by step',
-st1h:'The conversation',st1p:'Time to listen, to understand your story and what you are going through.',st2h:'The goal',st2p:'Together, we define what you wish to change.',st3h:'Hypnosis, gently',st3p:'A natural state of deep relaxation. You remain aware and present.',st4h:'The return',st4p:'We take stock, and you leave with guidance for what comes next.',
+st1h:'The conversation',st1p:'Time to listen, to understand your story and what you are going through.',st2h:'The goal',st2p:'Together, we define what you wish to change.',st3h:'Hypnosis, gently',st3p:'A natural state of deep relaxation. You remain aware and present.',st4h:'Coming back',st4p:'We review the session together, and you leave with guidance for what comes next.',
 f1:'Per session',f2:'Languages',f3:'Confidential',
 wt_eb:'The test',wt_h:'Does the past still weigh on you?',wt_sub:'8 questions · 2 minutes · confidential',wt_p:'A difficult event, an old wound, a shock you thought was behind you… Sometimes it leaves traces. Answer honestly: at the end, you will know whether something deserves support.',n6:'The test',br_eb:'A minute for you',br_h:'Breathe with me',br_sub:'Inhale 4 seconds · Exhale 6 seconds',br_p:'Simply follow the circle. A first step towards calm, here and now.',br_ready:'Ready?',br_go:'Begin',br_stop:'Stop',br_in:'Inhale',br_out:'Exhale',
-w_eb:'Here or elsewhere',w_h:'Wherever you are',w_sub:'Online sessions, anywhere in the world',w_p:'The same support as in the practice, from your home, at a time that suits you.',
-w1:'A quiet place where you will not be disturbed',w2:'Headphones or earphones',w3:'A good connection, and that is all',
+w_eb:'In person or online',w_h:'Wherever you are',w_sub:'Online sessions, anywhere in the world',w_p:'The same support as in the practice, from your home, at a time that suits you.',
+w1:'A quiet place where you will not be disturbed',w2:'Headphones or earphones',w3:'A good connection, nothing more',
 m_eb:'True or false?',m_h:'Hypnosis, without the myths',m_sub:'Hover or tap a card',vf:'True or false?',tap:'Reveal the answer',false:'False',real:'The reality',bref:'In short',
 m1q:'“Under hypnosis, you sleep.”',m1p:'You remain aware and present, and can come back at any time.',m1b:'You stay in control.',
-m2q:'“Only fragile people can be hypnotised.”',m2p:'It is a natural state we all experience every day.',m2b:'A capacity, not a weakness.',
+m2q:'“Only fragile people can be hypnotised.”',m2p:'It is a natural state we all experience every day.',m2b:'An ability, not a weakness.',
 m3q:'“Hypnosis makes you reveal secrets.”',m3p:'It is a serious tool. It never makes you say what you do not wish to say.',m3b:'Your integrity is respected.',
 ct_eb:'Book a session',ct_h:'The first step',ct_sub:'Is a simple message',ct_p:'There is no shame in asking for help. There is courage. Write to me: we will take the time to talk, with no commitment.',
 ct_addr:'Practice',ct_b:'Message on WhatsApp',ct_b2:'Send an e-mail',priv:'Your story stays yours. Absolute discretion, in the practice and online.',
 foot:'Hypnotherapy is complementary support and does not replace medical care. © 2026 Hypnose by Najlaa Hachami.',
-msg:'Hello Najlaa, I would like to book a first conversation.'},
+msg:'Hello Najlaa, I would like to book a first conversation.',ci1:'London',ci2:'Geneva',ci3:'Dubai',ci4:'Montreal',lg1:'French',addr:'31 Signature Living, 2<sup>nd</sup> floor, no. 23 · Casablanca'},
 
 };
 const FR={msg:'Bonjour Najlaa, je souhaite prendre rendez-vous pour un premier échange.',br_stop:'Arrêter',br_in:'Inspirez',br_out:'Expirez'};
@@ -778,6 +778,7 @@ function setLang(l){
   L=l;const d=T[l];document.documentElement.lang=l;
   document.querySelectorAll('[data-i]').forEach(e=>{if(d[e.dataset.i])e.innerHTML=d[e.dataset.i]});
   document.querySelectorAll('.wa-link').forEach(a=>a.href=waURL(d.msg));
+  document.querySelectorAll('img[alt]').forEach(i=>{if(!i.dataset.altfr)i.dataset.altfr=i.alt;const A={'Najlaa Hachami, hypnothérapeute':'Najlaa Hachami, hypnotherapist','Najlaa Hachami dans son cabinet':'Najlaa Hachami in her practice','Najlaa Hachami à son bureau':'Najlaa Hachami at her desk'};i.alt=l==='en'&&A[i.dataset.altfr]?A[i.dataset.altfr]:i.dataset.altfr});
   document.querySelectorAll('.lang button').forEach(b=>b.classList.toggle('on',b.dataset.l===l));
   const words={fr:['Trauma','Addictions','Anxiété','Émotions','Confiance en soi','Stress'],en:['Trauma','Addictions','Anxiety','Emotions','Self-confidence','Stress']}[l];
   document.getElementById('strip').innerHTML=words.map(w=>'<span>'+w+'</span>').join('<i>♥</i>');
@@ -810,7 +811,7 @@ function renderQuiz(anim){
     const lab=[0,1,2,3,4].map(i=>pick(i)[2]);
     qm.innerHTML=`<div class="q-top"><span class="q-count">✓</span><div class="q-bar"><i style="width:100%"></i></div></div>
     <div class="q-stage"><div class="q-step q-res"><span class="eyebrow">${z.yours}</span><h3>${r[0]}</h3><span class="script">${r[1]}</span><p>${r[2]}</p>
-    <div class="bref"><b>${z.bref}</b>${z.focus[pick(2)[0]]}<br>${z.fmt} : ${z.mode[pick(3)[0]]} · ${z.sess}<br>${z.lang} : ${pick(4)[2]}</div>
+    <div class="bref"><b>${z.bref}</b>${z.focus[pick(2)[0]]}<br>${z.fmt}${L==='fr'?' :':':'} ${z.mode[pick(3)[0]]} · ${z.sess}<br>${z.lang}${L==='fr'?' :':':'} ${pick(4)[2]}</div>
     <div class="acts"><a class="btn btn-dark mag" target="_blank" rel="noopener" href="${waURL(z.msg(lab))}"><span>${z.send}</span></a><button class="btn btn-line" id="qAgain"><span>${z.again}</span></button></div>
     <p class="disc">${z.disc}</p></div></div>`;
     document.getElementById('qAgain').onclick=()=>{qi=0;ans=[];renderQuiz()};
