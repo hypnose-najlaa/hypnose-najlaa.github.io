@@ -10,12 +10,7 @@
   --font:'DM Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
 }
 :root[data-skin="blanc"]{--bg:#FFFFFF; --panel:#FFFFFF; --sunk:#F6F3EF; --line:#ECE6DF; --ink:#2B211A; --mute:#857566; --accent:#4A3527; --accent-ink:#FFFFFF; --dark:#2B211A}
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --bg:#1E1712; --panel:#2A211A; --sunk:#241C16; --line:#3E3127; --ink:#F0E6DA; --mute:#B6A390;
-  --accent:#D3AE84; --accent-ink:#1E1712; --dark:#F0E6DA; --ok:#8DBF93; --warn:#E0B266; --bad:#E08A7C; color-scheme:dark}}
-:root[data-theme="dark"]{
-  --bg:#1E1712; --panel:#2A211A; --sunk:#241C16; --line:#3E3127; --ink:#F0E6DA; --mute:#B6A390;
-  --accent:#D3AE84; --accent-ink:#1E1712; --dark:#F0E6DA; --ok:#8DBF93; --warn:#E0B266; --bad:#E08A7C; color-scheme:dark}
+:root{color-scheme:light}
 *{box-sizing:border-box}
 body{background:var(--bg);color:var(--ink);font-family:var(--font);font-size:14px;line-height:1.55;margin:0}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--panel)}
@@ -23,7 +18,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--panel);border-bottom:1px solid var(--line)}
 .top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:14px 0;flex-wrap:wrap}
 .brand{display:flex;align-items:center;gap:10px}
-.brand .mk{width:34px;height:34px;border-radius:50%;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center;font-weight:700;font-size:13px;letter-spacing:.04em}
+.brand .mk{width:40px;height:40px;border-radius:50%;object-fit:cover;border:2px solid var(--line)}
 .brand b{font-size:17px;font-weight:700}
 .brand small{display:block;font-size:12px;color:var(--mute)}
 .topr{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
@@ -128,9 +123,10 @@ details p{margin:6px 0 0}
 .plan{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
 .pw{border:1px solid var(--line);border-radius:12px;background:var(--panel);padding:14px}
 .pw h4{margin:0 0 10px;font-size:14px}
-.pi{display:grid;grid-template-columns:76px 1fr;gap:8px;padding:7px 0;border-top:1px solid var(--line);font-size:12.5px}
+.pi{display:grid;grid-template-columns:70px 1fr 46px;gap:8px;align-items:center;padding:7px 0;border-top:1px solid var(--line);font-size:12.5px}
 .pi:first-of-type{border-top:0}
 .pi .dd{color:var(--mute);font-weight:600}
+.pi .th{width:46px;height:58px;border-radius:5px;object-fit:cover;background:var(--sunk);border:1px solid var(--line);display:grid;place-items:center;font-size:8.5px;font-weight:700;color:var(--mute);text-align:center;cursor:zoom-in}
 .pi .ty{display:block;font-size:11px;color:var(--accent);font-weight:700}
 .adset{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
 .adset .panel>b{display:block;margin-bottom:6px}
@@ -146,7 +142,7 @@ ul.rules{margin:10px 0 0;padding-left:18px;color:var(--mute);font-size:13px}
 <header>
   <div class="wrap">
     <div class="top">
-      <div class="brand"><span class="mk">NH</span><div><b>Najlaa Hachami</b><small>Cabinet d'hypnothérapie</small></div></div>
+      <div class="brand"><img class="mk" src="media/najlaa.jpg" alt="Najlaa Hachami"><div><b>Najlaa Hachami</b><small>Cabinet d'hypnothérapie</small></div></div>
       <div class="topr"><span class="who" id="status">Chargement…</span><div class="skin" id="skin"></div></div>
     </div>
     <nav id="nav">
@@ -154,7 +150,7 @@ ul.rules{margin:10px 0 0;padding-left:18px;color:var(--mute);font-size:13px}
       <a href="#patients" data-v="patients">Patients</a>
       <a href="#agenda" data-v="agenda">Agenda &amp; créneaux</a>
       <a href="#planning" data-v="planning">Planning réseaux</a>
-      <a href="#campagne" data-v="campagne">Contenus</a>
+      <a href="#campagne" data-v="campagne">Campagne 2 mois</a>
       <a href="#pubs" data-v="pubs">Publicités</a>
     </nav>
   </div>
@@ -203,7 +199,7 @@ ul.rules{margin:10px 0 0;padding-left:18px;color:var(--mute);font-size:13px}
   </section>
 
   <section id="v-campagne" hidden>
-    <div class="head"><div><h1>Contenus · 2 mois</h1><p class="sub">Vidéos, posts, carrousels, citations et stories. Les vidéos pas encore tournées apparaissent par leur titre.</p></div></div>
+    <div class="head"><div><h1>Campagne · 2 mois</h1><p class="sub">Vidéos, posts, carrousels, citations et stories. Les vidéos pas encore tournées apparaissent par leur titre.</p></div></div>
     <div class="tabs2" id="mTabs"></div>
     <div id="camp"></div>
   </section>
@@ -353,22 +349,23 @@ const TY={post:'Post',carousel:'Carrousel',quote:'Citation',Reel:'Reel',Stories:
 function monthTabs(sel,cur,set){$(sel).innerHTML=C.months.map((m,i)=>`<button class="${i===cur?'on':''}" data-m="${i}">${esc(m.name)}</button>`).join('');$$(sel+' button').forEach(b=>b.onclick=()=>set(+b.dataset.m))}
 function rPlan(){if(!C){$('#planBox').innerHTML='<div class="empty"><b>Chargement…</b></div>';return}
   monthTabs('#pTabs',pmonth,i=>{pmonth=i;rPlan()});
-  $('#planBox').innerHTML=C.months[pmonth].plan.map(w=>`<div class="pw"><h4>Semaine ${w.week}</h4>${w.items.map(it=>`<div class="pi"><span class="dd">${esc(it.day)}</span><span><span class="ty">${esc(TY[it.type]||it.type)}</span>${esc(it.title)}</span></div>`).join('')}</div>`).join('');}
+  $('#planBox').innerHTML=C.months[pmonth].plan.map(w=>`<div class="pw"><h4>Semaine ${w.week}</h4>${w.items.map(it=>`<div class="pi"><span class="dd">${esc(it.day)}</span><span><span class="ty">${esc(TY[it.type]||it.type)}</span>${esc(it.title)}</span>${it.thumb?(it.thumb.endsWith('.mp4')?`<video class="th" src="${esc(it.thumb)}" muted playsinline preload="metadata"></video>`:`<img class="th" src="${esc(it.thumb)}" alt="">`):'<span class="th">À tourner</span>'}</div>`).join('')}</div>`).join('');
+  $$('#planBox img.th').forEach(i=>i.onclick=()=>lightbox(i.src));}
 function rCamp(){
   if(!C){$('#camp').innerHTML='<div class="empty"><b>Chargement de la campagne…</b></div>';return}
   monthTabs('#mTabs',month,i=>{month=i;rCamp()});
   const m=C.months[month];
   $('#camp').innerHTML=`<p class="sub" style="margin:-6px 0 0"><b>Thème :</b> ${esc(m.theme)}</p>
   <div class="sec"><h3>Vidéos <small>${m.videos.length} à tourner · Najlaa parle avec ses mots, à partir de l'idée</small></h3><div class="vid">${m.videos.map(v=>`<div class="vcard"><div class="vtop"><div class="vbox">À tourner</div><div><span class="chip warn">${esc(v.id)}</span><h3 style="margin-top:6px">${esc(v.title)}</h3></div></div><div class="hook">${esc(v.hook)}</div><ul>${v.points.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>`).join('')}</div></div>
-  <div class="sec"><h3>Posts, carrousels et citations <small>${m.posts.length} publications</small></h3><div class="cards">${m.posts.map(p=>`<div class="card">${p.images.length>1?`<div class="strip wide">${p.images.map(s=>`<img src="${esc(s)}" alt="" loading="lazy">`).join('')}</div>`:`<img src="${esc(p.images[0])}" alt="${esc(p.title)}" loading="lazy">`}<div class="body"><span class="chip" style="justify-self:start">${p.type==='carousel'?'Carrousel · '+p.images.length+' slides':TY[p.type]}</span><b>${esc(p.title)}</b><p>${esc(p.fr)}</p><details><summary>Légende complète</summary><p><b>FR</b> ${esc(p.fr)} ${esc(p.cta)}</p><p><b>EN</b> ${esc(p.en)}</p><p>${esc(p.tags)}</p></details></div></div>`).join('')}</div></div>
-  <div class="sec"><h3>Stories <small>${m.stories.reduce((a,s)=>a+s.images.length,0)} stories en ${m.stories.length} séries</small></h3><div class="grid">${m.stories.map(s=>`<div class="panel" style="padding:12px"><b>Série ${esc(s.series)} · ${esc(s.title)}</b><div class="strip" style="margin-top:8px;border-radius:8px">${s.images.map(x=>`<img src="${esc(x)}" alt="" loading="lazy">`).join('')}</div></div>`).join('')}</div></div>
+  <div class="sec"><h3>Posts, carrousels et citations <small>${m.posts.length} publications</small></h3><div class="cards">${m.posts.map(p=>`<div class="card">${p.images.length>1?`<div class="strip wide">${p.images.map(s=>`<img src="${esc(s)}" alt="">`).join('')}</div>`:`<img src="${esc(p.images[0])}" alt="${esc(p.title)}">`}<div class="body"><span class="chip" style="justify-self:start">${p.type==='carousel'?'Carrousel · '+p.images.length+' slides':TY[p.type]}</span><b>${esc(p.title)}</b><p>${esc(p.fr)}</p><details><summary>Légende complète</summary><p><b>FR</b> ${esc(p.fr)} ${esc(p.cta)}</p><p><b>EN</b> ${esc(p.en)}</p><p>${esc(p.tags)}</p></details></div></div>`).join('')}</div></div>
+  <div class="sec"><h3>Stories <small>${m.stories.reduce((a,s)=>a+s.images.length,0)} stories en ${m.stories.length} séries</small></h3><div class="grid">${m.stories.map(s=>`<div class="panel" style="padding:12px"><b>Série ${esc(s.series)} · ${esc(s.title)}</b><div class="strip" style="margin-top:8px;border-radius:8px">${s.images.map(x=>`<img src="${esc(x)}" alt="">`).join('')}</div></div>`).join('')}</div></div>
   <div class="sec"><h3>Stories animées <small>${m.motion.length} vidéos courtes</small></h3><div class="cards">${m.motion.map(v=>`<div class="card"><video src="${esc(v.src)}" controls muted playsinline preload="metadata" style="aspect-ratio:9/16"></video><div class="body"><b>${esc(v.title)}</b></div></div>`).join('')}</div></div>`;
   $$('#camp img').forEach(i=>i.onclick=()=>lightbox(i.src));
 }
 function rAds(){if(!C){$('#ads').innerHTML='<div class="empty"><b>Chargement…</b></div>';return}
   $('#adsets').innerHTML=C.adsets.map(a=>`<div class="panel"><b>Ad set ${esc(a.name)}</b><p><b>Où :</b> ${esc(a.where)}</p><p><b>Qui :</b> ${esc(a.who)}</p><p><b>Intérêts :</b> ${esc(a.interests)}</p></div>`).join('');
   $('#adrules').innerHTML=C.adrules.map(r=>`<li>${esc(r)}</li>`).join('');
-  $('#ads').innerHTML=C.ads.map(a=>`<div class="card"><div class="strip wide" style="padding:0;gap:0"><img src="${esc(a.image)}" alt="${esc(a.topic)} feed" loading="lazy" style="width:60%;aspect-ratio:4/5;border-radius:0"><img src="${esc(a.story)}" alt="${esc(a.topic)} story" loading="lazy" style="width:40%;aspect-ratio:auto;object-fit:cover;border-radius:0"></div><div class="body"><span class="chip" style="justify-self:start">${esc(a.topic)}</span><b>${esc(a.fr)}</b><p>${esc(a.text)}</p><p><b>EN</b> ${esc(a.en)} · <b>ES</b> ${esc(a.es)}</p></div></div>`).join('');
+  $('#ads').innerHTML=C.ads.map(a=>`<div class="card"><div class="strip wide" style="padding:0;gap:0"><img src="${esc(a.image)}" alt="${esc(a.topic)} feed" style="width:60%;aspect-ratio:4/5;border-radius:0"><img src="${esc(a.story)}" alt="${esc(a.topic)} story" style="width:40%;aspect-ratio:auto;object-fit:cover;border-radius:0"></div><div class="body"><span class="chip" style="justify-self:start">${esc(a.topic)}</span><b>${esc(a.fr)}</b><p>${esc(a.text)}</p><p><b>EN</b> ${esc(a.en)} · <b>ES</b> ${esc(a.es)}</p></div></div>`).join('');
   $$('#ads img').forEach(i=>i.onclick=()=>lightbox(i.src));}
 function lightbox(src){const d=document.createElement('div');d.className='lb';d.innerHTML=`<img src="${esc(src)}" alt="">`;d.onclick=()=>d.remove();document.body.appendChild(d)}
 
