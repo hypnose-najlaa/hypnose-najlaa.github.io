@@ -205,7 +205,7 @@ ul.rules{margin:10px 0 0;padding-left:18px;color:var(--mute);font-size:13px}
   </section>
 
   <section id="v-pubs" hidden>
-    <div class="head"><div><h1>Publicités Meta</h1><p class="sub">6 sujets, en français, anglais et espagnol, en format feed et story. Les visuels affichés sont en français ; l'anglais et l'espagnol reprennent le même design.</p></div></div>
+    <div class="head"><div><h1>Publicités Meta</h1><p class="sub">6 sujets, en français et en anglais, en format feed et story. Les visuels affichés sont en français ; l'anglais reprend le même design.</p></div></div>
     <h3 style="margin-bottom:12px">Ad sets</h3>
     <div class="adset" id="adsets"></div>
     <div class="panel" style="margin-top:12px"><b>Règles de diffusion</b><ul class="rules" id="adrules"></ul></div>
@@ -223,7 +223,7 @@ const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const MOTIFS=['Addiction','Anxiété · stress','Trauma · passé','Dépression silencieuse','Dépendance affective','Confiance en soi','Phobie','Sommeil','Autre'];
 const TZ={'Africa/Casablanca':'Casablanca','Europe/Paris':'Paris','Europe/London':'Londres','Europe/Zurich':'Genève','Europe/Madrid':'Madrid','Europe/Brussels':'Bruxelles','Asia/Dubai':'Dubaï','America/Toronto':'Montréal','America/New_York':'New York'};
-const LANGS=['Français','English','Español'];
+const LANGS=['Français','English'];
 const DEF={jours:[1,2,3,4,5,6],debut:'10:00',fin:'20:00',duree:120,pause:30,prix:1500,devise:'MAD'};
 let canWrite=false, P=[], S=[], SET={...DEF}, C=null, view='tableau', wOff=0, month=0, pmonth=0;
 
@@ -275,7 +275,7 @@ const store={db:null,
   async saveSettings(body){if(MODE==='demo'){SET={...DEF,...body};this.persist();return}await this.db.doc('cabinet/settings').set(body)}
 };
 function demoSeed(){const d=n=>{const x=new Date();x.setDate(x.getDate()+n);return ymd(x)};
-  const p=[['Exemple · Patient A','Addiction','cabinet','Français','Africa/Casablanca'],['Exemple · Patiente B','Anxiété · stress','en ligne','English','Europe/London'],['Exemple · Patiente C','Trauma · passé','en ligne','Français','Europe/Paris'],['Exemple · Patient D','Confiance en soi','cabinet','Español','Africa/Casablanca']]
+  const p=[['Exemple · Patient A','Addiction','cabinet','Français','Africa/Casablanca'],['Exemple · Patiente B','Anxiété · stress','en ligne','English','Europe/London'],['Exemple · Patiente C','Trauma · passé','en ligne','Français','Europe/Paris'],['Exemple · Patient D','Confiance en soi','cabinet','Français','Africa/Casablanca']]
     .map((r,i)=>({id:'ex'+i,nom:r[0],motif:r[1],format:r[2],langue:r[3],fuseau:r[4],tarif:1500,source:'Exemple',notes:'Fiche d\'exemple pour la démonstration.'}));
   const s=[['ex0',-9,'10:00','faite',true],['ex0',-2,'10:00','faite',true],['ex0',5,'10:00','prevue',false],['ex1',-5,'15:00','faite',true],['ex1',3,'16:30','prevue',false],['ex2',-3,'18:00','faite',false],['ex2',2,'12:30','prevue',false],['ex3',6,'14:00','prevue',false]]
     .map((r,i)=>({id:'es'+i,patientId:r[0],date:d(r[1]),heure:r[2],duree:120,format:p.find(x=>x.id===r[0]).format,prix:1500,statut:r[3],paye:r[4]}));
@@ -365,7 +365,7 @@ function rCamp(){
 function rAds(){if(!C){$('#ads').innerHTML='<div class="empty"><b>Chargement…</b></div>';return}
   $('#adsets').innerHTML=C.adsets.map(a=>`<div class="panel"><b>Ad set ${esc(a.name)}</b><p><b>Où :</b> ${esc(a.where)}</p><p><b>Qui :</b> ${esc(a.who)}</p><p><b>Intérêts :</b> ${esc(a.interests)}</p></div>`).join('');
   $('#adrules').innerHTML=C.adrules.map(r=>`<li>${esc(r)}</li>`).join('');
-  $('#ads').innerHTML=C.ads.map(a=>`<div class="card"><div class="strip wide" style="padding:0;gap:0"><img src="${esc(a.image)}" alt="${esc(a.topic)} feed" style="width:60%;aspect-ratio:4/5;border-radius:0"><img src="${esc(a.story)}" alt="${esc(a.topic)} story" style="width:40%;aspect-ratio:auto;object-fit:cover;border-radius:0"></div><div class="body"><span class="chip" style="justify-self:start">${esc(a.topic)}</span><b>${esc(a.fr)}</b><p>${esc(a.text)}</p><p><b>EN</b> ${esc(a.en)} · <b>ES</b> ${esc(a.es)}</p></div></div>`).join('');
+  $('#ads').innerHTML=C.ads.map(a=>`<div class="card"><div class="strip wide" style="padding:0;gap:0"><img src="${esc(a.image)}" alt="${esc(a.topic)} feed" style="width:60%;aspect-ratio:4/5;border-radius:0"><img src="${esc(a.story)}" alt="${esc(a.topic)} story" style="width:40%;aspect-ratio:auto;object-fit:cover;border-radius:0"></div><div class="body"><span class="chip" style="justify-self:start">${esc(a.topic)}</span><b>${esc(a.fr)}</b><p>${esc(a.text)}</p><p><b>EN</b> ${esc(a.en)}</p></div></div>`).join('');
   $$('#ads img').forEach(i=>i.onclick=()=>lightbox(i.src));}
 function lightbox(src){const d=document.createElement('div');d.className='lb';d.innerHTML=`<img src="${esc(src)}" alt="">`;d.onclick=()=>d.remove();document.body.appendChild(d)}
 
