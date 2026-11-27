@@ -1,0 +1,456 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex,nofollow"><style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}[hidden]{display:none!important}img{max-width:100%}</style></head><body><title>Cabinet Najlaa Hachami</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap">
+<style>
+/* Layout: sticky top bar + tabs, one column of panels. Two skins: ivoire (warm) and blanc (white, like a clean app). One simple typeface. */
+:root{
+  --bg:#F7F2EC; --panel:#FFFDFA; --sunk:#EFE6DB; --line:#E2D5C6; --ink:#33251B; --mute:#7D6B5B;
+  --accent:#9C7650; --accent-ink:#FFFDFA; --dark:#3E2C20; --ok:#4E7A55; --warn:#B07A2A; --bad:#A8483A;
+  --font:'DM Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+}
+:root[data-skin="blanc"]{--bg:#FFFFFF; --panel:#FFFFFF; --sunk:#F6F3EF; --line:#ECE6DF; --ink:#2B211A; --mute:#857566; --accent:#4A3527; --accent-ink:#FFFFFF; --dark:#2B211A}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#1E1712; --panel:#2A211A; --sunk:#241C16; --line:#3E3127; --ink:#F0E6DA; --mute:#B6A390;
+  --accent:#D3AE84; --accent-ink:#1E1712; --dark:#F0E6DA; --ok:#8DBF93; --warn:#E0B266; --bad:#E08A7C; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#1E1712; --panel:#2A211A; --sunk:#241C16; --line:#3E3127; --ink:#F0E6DA; --mute:#B6A390;
+  --accent:#D3AE84; --accent-ink:#1E1712; --dark:#F0E6DA; --ok:#8DBF93; --warn:#E0B266; --bad:#E08A7C; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--font);font-size:14px;line-height:1.55;margin:0}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--panel)}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--panel);border-bottom:1px solid var(--line)}
+.top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:14px 0;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px}
+.brand .mk{width:34px;height:34px;border-radius:50%;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center;font-weight:700;font-size:13px;letter-spacing:.04em}
+.brand b{font-size:17px;font-weight:700}
+.brand small{display:block;font-size:12px;color:var(--mute)}
+.topr{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.who{font-size:12px;color:var(--mute)}
+.skin{display:flex;border:1px solid var(--line);border-radius:30px;overflow:hidden}
+.skin a{padding:6px 12px;font-size:12px;font-weight:600;color:var(--mute);text-decoration:none}
+.skin a.on{background:var(--dark);color:var(--panel)}
+nav{display:flex;gap:4px;overflow-x:auto;padding-block:8px 0;scrollbar-width:none}
+nav a{padding:10px 14px;border-bottom:2px solid transparent;color:var(--mute);text-decoration:none;font-size:13.5px;font-weight:600;white-space:nowrap}
+nav a.on{color:var(--ink);border-color:var(--accent)}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.demo{background:var(--sunk);border-bottom:1px solid var(--line);font-size:12.5px;padding-block:8px;color:var(--ink)}
+main{padding-block:28px 60px}
+h1,h2,h3{font-weight:700;margin:0;text-wrap:balance;color:var(--ink);letter-spacing:-.01em}
+h1{font-size:28px}
+h2{font-size:21px}
+h3{font-size:17px}
+.sub{color:var(--mute);margin:4px 0 0}
+.head{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;margin-bottom:22px}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px}
+.grid{display:grid;gap:16px}
+.kpis{grid-template-columns:repeat(auto-fit,minmax(180px,1fr))}
+.kpi .n{font-size:30px;font-weight:700;line-height:1.15;font-variant-numeric:tabular-nums;margin-top:4px}
+.kpi .l{font-size:12.5px;color:var(--mute);font-weight:600}
+.kpi .s{font-size:12px;color:var(--mute)}
+.two{grid-template-columns:1.2fr 1fr}
+@media(max-width:860px){.two{grid-template-columns:1fr}}
+.btn{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--accent);background:var(--accent);color:var(--accent-ink);border-radius:8px;padding:9px 16px;font:600 13px var(--font);cursor:pointer}
+.btn.line{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn.sm{padding:6px 11px;font-size:12px}
+.btn.danger{background:transparent;color:var(--bad);border-color:var(--bad)}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+th{text-align:left;font-size:12px;color:var(--mute);font-weight:600;padding:10px 12px;border-bottom:1px solid var(--line)}
+td{padding:12px;border-bottom:1px solid var(--line);vertical-align:top}
+tr.click{cursor:pointer}tr.click:hover td{background:var(--sunk)}
+.scroll{overflow-x:auto}
+.chip{display:inline-block;padding:3px 10px;border-radius:30px;font-size:11.5px;font-weight:600;background:var(--sunk);color:var(--ink);white-space:nowrap}
+.chip.ok{background:color-mix(in srgb,var(--ok) 18%,transparent);color:var(--ok)}
+.chip.warn{background:color-mix(in srgb,var(--warn) 20%,transparent);color:var(--warn)}
+.chip.bad{background:color-mix(in srgb,var(--bad) 18%,transparent);color:var(--bad)}
+.muted{color:var(--mute)}
+.empty{text-align:center;padding:40px 20px;color:var(--mute)}
+.empty b{display:block;font-size:17px;color:var(--ink);margin-bottom:6px}
+.bar{display:grid;grid-template-columns:160px 1fr 40px;gap:10px;align-items:center;margin:8px 0;font-size:13px}
+.bar s{display:block;height:8px;border-radius:8px;background:var(--sunk);overflow:hidden;text-decoration:none}
+.bar s i{display:block;height:100%;background:var(--accent);border-radius:8px}
+.bar span:last-child{text-align:right;font-variant-numeric:tabular-nums}
+.list{display:grid;gap:10px}
+.item{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
+.item .t{font-weight:600}
+.item .d{font-size:12px;color:var(--mute)}
+label{display:grid;gap:5px;font-size:12px;font-weight:600;color:var(--mute)}
+input,select,textarea{font:14px var(--font);color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:9px 10px;width:100%}
+textarea{min-height:70px;resize:vertical}
+.check{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--ink);font-weight:500}
+.check input{width:auto}
+.fgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.fgrid .full{grid-column:1/-1}
+@media(max-width:620px){.fgrid{grid-template-columns:1fr}}
+dialog{border:1px solid var(--line);border-radius:14px;background:var(--panel);color:var(--ink);padding:0;width:min(640px,calc(100vw - 32px));max-height:calc(100vh - 40px)}
+dialog::backdrop{background:rgba(30,20,12,.45)}
+.dlg{padding:22px;display:grid;gap:16px;overflow:auto}
+.dlg .acts{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.week{display:grid;grid-template-columns:repeat(7,minmax(130px,1fr));gap:8px;min-width:940px}
+.day{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px;min-height:150px}
+.day.today{border-color:var(--accent)}
+.day h4{margin:0 0 8px;font-size:12px;color:var(--mute);font-weight:600;text-transform:capitalize}
+.day.off{opacity:.55}
+.slot{border-left:3px solid var(--accent);background:var(--sunk);border-radius:6px;padding:6px 8px;margin-bottom:6px;font-size:12px;cursor:pointer}
+.slot.faite{border-color:var(--ok)}.slot.annulee{border-color:var(--bad);opacity:.6;text-decoration:line-through}
+.slot b{display:block}
+.sugg{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}
+.sg{border:1px solid var(--line);border-radius:10px;padding:12px;background:var(--panel);display:grid;gap:6px}
+.sg .when{font-size:17px;font-weight:700;text-transform:capitalize}
+.sg .why{font-size:12px;color:var(--mute)}
+.tools{display:flex;gap:10px;flex-wrap:wrap;align-items:end}
+.tools label{min-width:150px}
+.tabs2{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:18px}
+.tabs2 button{border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:30px;padding:8px 16px;font:600 13px var(--font);cursor:pointer}
+.tabs2 button.on{background:var(--dark);color:var(--panel);border-color:var(--dark)}
+.sec{margin-top:30px}
+.sec h3{margin-bottom:12px;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.sec h3 small{font-size:12.5px;color:var(--mute);font-weight:500}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;min-width:0}
+.card img,.card video{width:100%;display:block;aspect-ratio:4/5;object-fit:cover;background:var(--sunk);max-width:100%;cursor:zoom-in}
+.card video{cursor:default}
+.card .body{padding:12px 14px;display:grid;gap:6px}
+.card .body p{margin:0;font-size:12.5px;color:var(--mute)}
+details{font-size:12.5px}details summary{cursor:pointer;color:var(--accent);font-weight:600}
+details p{margin:6px 0 0}
+.strip{display:flex;gap:6px;overflow-x:auto;padding:8px;background:var(--sunk)}
+.strip img{width:86px;flex:none;aspect-ratio:9/16;object-fit:cover;border-radius:6px;cursor:zoom-in}
+.strip.wide img{width:110px;aspect-ratio:4/5}
+.vid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
+.vcard{border:1px dashed var(--line);border-radius:12px;padding:16px;background:var(--panel);display:grid;gap:8px;align-content:start}
+.vcard .hook{font-style:italic;font-size:14px}
+.vcard ul{margin:0;padding-left:18px;color:var(--mute);font-size:12.5px}
+.vbox{flex:none;height:96px;width:54px;border-radius:6px;background:repeating-linear-gradient(135deg,var(--sunk) 0 8px,transparent 8px 16px);display:grid;place-items:center;font-size:9.5px;font-weight:600;color:var(--mute);text-align:center;border:1px solid var(--line)}
+.vtop{display:flex;gap:12px;align-items:flex-start}
+.plan{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.pw{border:1px solid var(--line);border-radius:12px;background:var(--panel);padding:14px}
+.pw h4{margin:0 0 10px;font-size:14px}
+.pi{display:grid;grid-template-columns:76px 1fr;gap:8px;padding:7px 0;border-top:1px solid var(--line);font-size:12.5px}
+.pi:first-of-type{border-top:0}
+.pi .dd{color:var(--mute);font-weight:600}
+.pi .ty{display:block;font-size:11px;color:var(--accent);font-weight:700}
+.adset{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.adset .panel>b{display:block;margin-bottom:6px}
+.adset .panel p{margin:3px 0;font-size:12.5px;color:var(--mute)}
+ul.rules{margin:10px 0 0;padding-left:18px;color:var(--mute);font-size:13px}
+.lb{position:fixed;inset:0;background:rgba(20,14,10,.85);display:grid;place-items:center;z-index:50;padding:20px}
+.lb img{max-height:90vh;max-width:100%;border-radius:8px}
+.note{font-size:12.5px;color:var(--mute)}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--dark);color:var(--panel);padding:10px 18px;border-radius:30px;font-size:13px;z-index:60}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<header>
+  <div class="wrap">
+    <div class="top">
+      <div class="brand"><span class="mk">NH</span><div><b>Najlaa Hachami</b><small>Cabinet d'hypnothérapie</small></div></div>
+      <div class="topr"><span class="who" id="status">Chargement…</span><div class="skin" id="skin"></div></div>
+    </div>
+    <nav id="nav">
+      <a href="#tableau" data-v="tableau">Tableau de bord</a>
+      <a href="#patients" data-v="patients">Patients</a>
+      <a href="#agenda" data-v="agenda">Agenda &amp; créneaux</a>
+      <a href="#planning" data-v="planning">Planning réseaux</a>
+      <a href="#campagne" data-v="campagne">Contenus</a>
+      <a href="#pubs" data-v="pubs">Publicités</a>
+    </nav>
+  </div>
+</header>
+<div class="demo" id="demoBar" hidden><div class="wrap">Version de démonstration : les patients affichés sont des exemples, et ce que vous ajoutez reste uniquement dans votre navigateur.</div></div>
+
+<main class="wrap">
+  <section id="v-tableau" hidden>
+    <div class="head"><div><h1>Tableau de bord</h1><p class="sub">Patients, séances et revenus du cabinet, en un coup d'œil.</p></div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn" data-act="newPatient">+ Nouveau patient</button><button class="btn line" data-act="newSeance">+ Nouvelle séance</button></div></div>
+    <div class="grid kpis" id="kpis"></div>
+    <div class="grid two" style="margin-top:16px">
+      <div class="panel"><h3>Prochaines séances</h3><div id="nextList" class="list" style="margin-top:12px"></div></div>
+      <div class="panel"><h3>Motifs de consultation</h3><div id="motifs" style="margin-top:12px"></div></div>
+    </div>
+  </section>
+
+  <section id="v-patients" hidden>
+    <div class="head"><div><h1>Patients</h1><p class="sub">Chaque patient, son motif, ses séances et ce qu'il a réglé.</p></div>
+      <div class="tools"><label>Rechercher<input id="q" placeholder="Nom, motif, ville…"></label><button class="btn" data-act="newPatient">+ Nouveau patient</button></div></div>
+    <div class="panel scroll" id="ptable"></div>
+  </section>
+
+  <section id="v-agenda" hidden>
+    <div class="head"><div><h1>Agenda &amp; créneaux</h1><p class="sub">La semaine, et les meilleurs créneaux libres pour Najlaa.</p></div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn line sm" id="wPrev">← Semaine</button><button class="btn line sm" id="wToday">Cette semaine</button><button class="btn line sm" id="wNext">Semaine →</button><button class="btn line sm" data-act="settings">Horaires du cabinet</button><button class="btn sm" data-act="newSeance">+ Séance</button></div></div>
+    <div class="panel"><h3 id="wTitle"></h3><div class="scroll" style="margin-top:12px"><div class="week" id="week"></div></div></div>
+    <div class="panel" style="margin-top:16px">
+      <h3>Trouver le meilleur créneau</h3>
+      <p class="note">Les créneaux proposés respectent ses jours et ses horaires, laissent une pause entre deux séances et regroupent les rendez-vous pour éviter les trous dans sa journée. Pour un patient à l'étranger, l'heure chez lui est indiquée.</p>
+      <div class="tools" style="margin:12px 0 16px">
+        <label>Patient<select id="sPat"></select></label>
+        <label>Format<select id="sFmt"><option value="cabinet">Au cabinet</option><option value="en ligne">En ligne</option></select></label>
+        <label>Moment préféré<select id="sMom"><option value="">Peu importe</option><option value="matin">Matin</option><option value="apres-midi">Après-midi</option><option value="soir">Fin de journée</option></select></label>
+        <label>Dans les<select id="sRange"><option value="7">7 jours</option><option value="14" selected>14 jours</option><option value="30">30 jours</option></select></label>
+        <button class="btn" id="sGo">Proposer des créneaux</button>
+      </div>
+      <div id="sugg" class="sugg"></div>
+    </div>
+  </section>
+
+  <section id="v-planning" hidden>
+    <div class="head"><div><h1>Planning réseaux · 8 semaines</h1><p class="sub">Instagram et Facebook, publication à 19h30. Lundi et vendredi : un reel. Mercredi et jeudi : un post. Samedi : une série de stories. Dimanche : une story animée.</p></div></div>
+    <div class="tabs2" id="pTabs"></div>
+    <div id="planBox" class="plan"></div>
+  </section>
+
+  <section id="v-campagne" hidden>
+    <div class="head"><div><h1>Contenus · 2 mois</h1><p class="sub">Vidéos, posts, carrousels, citations et stories. Les vidéos pas encore tournées apparaissent par leur titre.</p></div></div>
+    <div class="tabs2" id="mTabs"></div>
+    <div id="camp"></div>
+  </section>
+
+  <section id="v-pubs" hidden>
+    <div class="head"><div><h1>Publicités Meta</h1><p class="sub">6 sujets, en français, anglais et espagnol, en format feed et story. Les visuels affichés sont en français ; l'anglais et l'espagnol reprennent le même design.</p></div></div>
+    <h3 style="margin-bottom:12px">Ad sets</h3>
+    <div class="adset" id="adsets"></div>
+    <div class="panel" style="margin-top:12px"><b>Règles de diffusion</b><ul class="rules" id="adrules"></ul></div>
+    <h3 style="margin:26px 0 12px">Les 6 publicités</h3>
+    <div id="ads" class="cards"></div>
+  </section>
+</main>
+
+<dialog id="dlg"><form method="dialog" class="dlg" id="dlgForm"></form></dialog>
+
+<script>
+const MODE='demo', SKIN='ivoire';
+document.documentElement.dataset.skin=SKIN;
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const MOTIFS=['Addiction','Anxiété · stress','Trauma · passé','Dépression silencieuse','Dépendance affective','Confiance en soi','Phobie','Sommeil','Autre'];
+const TZ={'Africa/Casablanca':'Casablanca','Europe/Paris':'Paris','Europe/London':'Londres','Europe/Zurich':'Genève','Europe/Madrid':'Madrid','Europe/Brussels':'Bruxelles','Asia/Dubai':'Dubaï','America/Toronto':'Montréal','America/New_York':'New York'};
+const LANGS=['Français','English','Español'];
+const DEF={jours:[1,2,3,4,5,6],debut:'10:00',fin:'20:00',duree:120,pause:30,prix:1500,devise:'MAD'};
+let canWrite=false, P=[], S=[], SET={...DEF}, C=null, view='tableau', wOff=0, month=0, pmonth=0;
+
+if(MODE==='demo'){$('#skin').innerHTML=`<a href="index.html${location.hash}" class="${SKIN==='ivoire'?'on':''}">Ivoire</a><a href="blanc.html${location.hash}" class="${SKIN==='blanc'?'on':''}">Blanc</a>`;
+  $$('#skin a').forEach(a=>a.onclick=()=>{a.href=a.getAttribute('href').split('#')[0]+location.hash})}
+else $('#skin').hidden=true;
+
+/* ---------- helpers ---------- */
+const pad=n=>String(n).padStart(2,'0');
+const ymd=d=>`${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+const toMin=h=>{const [a,b]=(h||'00:00').split(':').map(Number);return a*60+b};
+const toHM=m=>`${pad(Math.floor(m/60))}:${pad(m%60)}`;
+const money=n=>new Intl.NumberFormat('fr-FR').format(Math.round(n||0))+' '+(SET.devise||'MAD');
+const fmtDay=s=>new Date(s+'T12:00').toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long'});
+const fmtShort=s=>new Date(s+'T12:00').toLocaleDateString('fr-FR',{weekday:'short',day:'numeric',month:'short'});
+const today=ymd(new Date());
+function tzOffset(tz,date){const p=Object.fromEntries(new Intl.DateTimeFormat('en-US',{timeZone:tz,hourCycle:'h23',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit'}).formatToParts(date).map(x=>[x.type,x.value]));
+  return Math.round((Date.UTC(+p.year,+p.month-1,+p.day,+p.hour%24,+p.minute)-date.getTime())/60000);}
+function localTime(dateStr,hm,tz){if(!tz||tz==='Africa/Casablanca')return null;
+  const g=new Date(dateStr+'T'+hm+':00Z');const utc=new Date(g.getTime()-tzOffset('Africa/Casablanca',g)*60000);
+  return new Intl.DateTimeFormat('fr-FR',{timeZone:tz,hour:'2-digit',minute:'2-digit'}).format(utc)+' à '+TZ[tz];}
+const pat=id=>P.find(p=>p.id===id);
+const sOf=id=>S.filter(s=>s.patientId===id);
+function toast(t){const el=document.createElement('div');el.className='toast';el.textContent=t;document.body.appendChild(el);setTimeout(()=>el.remove(),2600)}
+const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,8);
+
+/* ---------- storage: claude db (private) or browser demo ---------- */
+const store={db:null,
+  async init(){
+    if(MODE==='demo'){$('#demoBar').hidden=false;canWrite=true;$('#status').textContent='Démonstration';
+      let d=null;try{d=JSON.parse(localStorage.getItem('nh-demo-v1')||'null')}catch(e){}
+      if(!d)d=demoSeed();this.d=d;P=d.patients;S=d.seances;SET={...DEF,...d.settings};render();return}
+    this.db=await window.claude?.use?.('db');
+    if(!this.db){$('#status').textContent='Données indisponibles dans cette vue : ouvrez la plateforme connecté(e) avec un accès éditeur.';return}
+    const user=await window.claude.use('user');canWrite=(await user?.canEdit())??true;
+    $('#status').textContent=canWrite?'Données privées':'Lecture seule';
+    const timer=setTimeout(()=>{$('#status').textContent='Les données mettent du temps à arriver…'},10000);
+    this.db.doc('cabinet/settings').onSnapshot(d=>{if(d.exists)SET={...DEF,...d.data()};render()},()=>{});
+    this.db.collection('cabinet/main/patients').onSnapshot(q=>{clearTimeout(timer);P=q.docs.map(d=>({id:d.id,...d.data()}));render()},e=>{$('#status').textContent='Erreur de chargement : '+e.code});
+    this.db.collection('cabinet/main/seances').onSnapshot(q=>{S=q.docs.map(d=>({id:d.id,...d.data()}));render()},()=>{});
+  },
+  persist(){try{localStorage.setItem('nh-demo-v1',JSON.stringify({patients:P,seances:S,settings:SET}))}catch(e){}render()},
+  async save(col,id,body){
+    if(MODE==='demo'){const arr=col==='patients'?P:S;const i=arr.findIndex(x=>x.id===id);const row={...body,id:id||uid()};if(i>=0)arr[i]=row;else arr.push(row);this.persist();return}
+    await this.db.collection('cabinet/main/'+col).doc(id||undefined).set(body)},
+  async del(col,id){
+    if(MODE==='demo'){if(col==='patients')P=P.filter(x=>x.id!==id);else S=S.filter(x=>x.id!==id);this.persist();return}
+    await this.db.collection('cabinet/main/'+col).doc(id).delete()},
+  async saveSettings(body){if(MODE==='demo'){SET={...DEF,...body};this.persist();return}await this.db.doc('cabinet/settings').set(body)}
+};
+function demoSeed(){const d=n=>{const x=new Date();x.setDate(x.getDate()+n);return ymd(x)};
+  const p=[['Exemple · Patient A','Addiction','cabinet','Français','Africa/Casablanca'],['Exemple · Patiente B','Anxiété · stress','en ligne','English','Europe/London'],['Exemple · Patiente C','Trauma · passé','en ligne','Français','Europe/Paris'],['Exemple · Patient D','Confiance en soi','cabinet','Español','Africa/Casablanca']]
+    .map((r,i)=>({id:'ex'+i,nom:r[0],motif:r[1],format:r[2],langue:r[3],fuseau:r[4],tarif:1500,source:'Exemple',notes:'Fiche d\'exemple pour la démonstration.'}));
+  const s=[['ex0',-9,'10:00','faite',true],['ex0',-2,'10:00','faite',true],['ex0',5,'10:00','prevue',false],['ex1',-5,'15:00','faite',true],['ex1',3,'16:30','prevue',false],['ex2',-3,'18:00','faite',false],['ex2',2,'12:30','prevue',false],['ex3',6,'14:00','prevue',false]]
+    .map((r,i)=>({id:'es'+i,patientId:r[0],date:d(r[1]),heure:r[2],duree:120,format:p.find(x=>x.id===r[0]).format,prix:1500,statut:r[3],paye:r[4]}));
+  return {patients:p,seances:s,settings:{...DEF}}}
+
+/* ---------- routing ---------- */
+const VIEWS=['tableau','patients','agenda','planning','campagne','pubs'];
+function route(){const h=location.hash.slice(1);view=VIEWS.includes(h)?h:'tableau';
+  $$('main>section').forEach(s=>s.hidden=s.id!=='v-'+view);$$('#nav a').forEach(a=>a.classList.toggle('on',a.dataset.v===view));render();}
+addEventListener('hashchange',route);
+
+/* ---------- renders ---------- */
+function render(){({tableau:rDash,patients:rPatients,agenda:rAgenda,planning:rPlan,campagne:rCamp,pubs:rAds})[view]();
+  $$('[data-act]').forEach(b=>b.disabled=!canWrite);}
+function rDash(){
+  const done=S.filter(s=>s.statut==='faite'), up=S.filter(s=>s.statut==='prevue'&&s.date>=today).sort((a,b)=>(a.date+a.heure).localeCompare(b.date+b.heure));
+  const paid=S.filter(s=>s.paye&&s.statut!=='annulee').reduce((a,s)=>a+(+s.prix||0),0);
+  const due=S.filter(s=>!s.paye&&s.statut==='faite').reduce((a,s)=>a+(+s.prix||0),0);
+  const m=today.slice(0,7), mPaid=S.filter(s=>s.paye&&s.statut!=='annulee'&&(s.date||'').startsWith(m)).reduce((a,s)=>a+(+s.prix||0),0);
+  const online=P.filter(p=>p.format==='en ligne').length;
+  $('#kpis').innerHTML=[['Patients',P.length,`${online} en ligne · ${P.length-online} au cabinet`],['Séances faites',done.length,`${up.length} à venir`],['Encaissé',money(paid),`ce mois-ci : ${money(mPaid)}`],['Reste à encaisser',money(due),'séances faites non réglées']]
+    .map(([l,n,s])=>`<div class="panel kpi"><div class="l">${l}</div><div class="n">${esc(n)}</div><div class="s">${esc(s)}</div></div>`).join('');
+  $('#nextList').innerHTML=up.length?up.slice(0,6).map(s=>{const p=pat(s.patientId);const lt=p&&s.format==='en ligne'?localTime(s.date,s.heure,p.fuseau):null;
+    return `<div class="item"><div><div class="t">${esc(p?.nom||'Patient supprimé')}</div><div class="d">${esc(fmtDay(s.date))} · ${esc(s.heure)} (${esc(s.duree)} min)${lt?' · '+esc(lt):''}</div></div><span class="chip ${s.format==='en ligne'?'':'ok'}">${esc(s.format)}</span></div>`}).join('')
+    :`<div class="empty"><b>Aucune séance prévue</b>Ajoutez une séance, ou utilisez « Trouver le meilleur créneau » dans l'agenda.</div>`;
+  const cnt={};P.forEach(p=>cnt[p.motif]=(cnt[p.motif]||0)+1);const ent=Object.entries(cnt).sort((a,b)=>b[1]-a[1]);const mx=Math.max(1,...ent.map(e=>e[1]));
+  $('#motifs').innerHTML=ent.length?ent.map(([k,v])=>`<div class="bar"><span>${esc(k)}</span><s><i style="width:${v/mx*100}%"></i></s><span>${v}</span></div>`).join('')
+    :`<div class="empty"><b>Pas encore de patients</b>Les motifs apparaîtront ici dès le premier patient enregistré.</div>`;
+}
+function rPatients(){
+  const q=($('#q').value||'').toLowerCase();
+  const rows=P.filter(p=>!q||[p.nom,p.motif,p.langue,TZ[p.fuseau]].join(' ').toLowerCase().includes(q)).sort((a,b)=>(a.nom||'').localeCompare(b.nom||''));
+  if(!P.length){$('#ptable').innerHTML=`<div class="empty"><b>Aucun patient pour l'instant</b>Cliquez sur « Nouveau patient » : nom, motif, format, langue et tarif. Les séances s'ajoutent ensuite depuis sa fiche ou l'agenda.</div>`;return}
+  $('#ptable').innerHTML=`<table><thead><tr><th>Patient</th><th>Motif</th><th>Format</th><th>Séances</th><th>Réglé</th><th>Prochaine séance</th></tr></thead><tbody>${rows.map(p=>{
+    const ss=sOf(p.id), done=ss.filter(s=>s.statut==='faite').length, paid=ss.filter(s=>s.paye&&s.statut!=='annulee').reduce((a,s)=>a+(+s.prix||0),0);
+    const nx=ss.filter(s=>s.statut==='prevue'&&s.date>=today).sort((a,b)=>(a.date+a.heure).localeCompare(b.date+b.heure))[0];
+    return `<tr class="click" data-pid="${esc(p.id)}"><td><b>${esc(p.nom)}</b><div class="muted" style="font-size:12px">${esc([TZ[p.fuseau],p.langue].filter(Boolean).join(' · '))}</div></td><td><span class="chip">${esc(p.motif)}</span></td><td>${esc(p.format)}</td><td>${done} faite${done>1?'s':''} / ${ss.filter(s=>s.statut!=='annulee').length}</td><td>${esc(money(paid))}</td><td>${nx?esc(fmtShort(nx.date)+' · '+nx.heure):'<span class="muted">—</span>'}</td></tr>`}).join('')}</tbody></table>`;
+  $$('#ptable tr[data-pid]').forEach(tr=>tr.onclick=()=>openPatient(tr.dataset.pid));
+}
+function weekDays(){const d=new Date();const dow=(d.getDay()+6)%7;d.setDate(d.getDate()-dow+wOff*7);return [...Array(7)].map((_,i)=>{const x=new Date(d);x.setDate(d.getDate()+i);return x})}
+function rAgenda(){
+  const days=weekDays();$('#wTitle').textContent=`Semaine du ${days[0].toLocaleDateString('fr-FR',{day:'numeric',month:'long'})} au ${days[6].toLocaleDateString('fr-FR',{day:'numeric',month:'long',year:'numeric'})}`;
+  $('#week').innerHTML=days.map(d=>{const k=ymd(d),work=SET.jours.includes(d.getDay());const ss=S.filter(s=>s.date===k).sort((a,b)=>a.heure.localeCompare(b.heure));
+    return `<div class="day ${k===today?'today':''} ${work?'':'off'}"><h4>${esc(d.toLocaleDateString('fr-FR',{weekday:'short',day:'numeric'}))}${work?'':' · fermé'}</h4>${ss.map(s=>`<div class="slot ${esc(s.statut)}" data-sid="${esc(s.id)}"><b>${esc(s.heure)} · ${esc(pat(s.patientId)?.nom||'—')}</b>${esc(s.format)} · ${esc(s.duree)} min</div>`).join('')||'<div class="muted" style="font-size:12px">Libre</div>'}</div>`}).join('');
+  $$('#week .slot').forEach(el=>el.onclick=()=>openSeance(S.find(s=>s.id===el.dataset.sid)));
+  const cur=$('#sPat').value;
+  $('#sPat').innerHTML='<option value="">Sans patient précis</option>'+P.slice().sort((a,b)=>(a.nom||'').localeCompare(b.nom||'')).map(p=>`<option value="${esc(p.id)}">${esc(p.nom)}</option>`).join('');$('#sPat').value=cur;
+}
+function suggest(){
+  const pid=$('#sPat').value,p=pat(pid),fmt=$('#sFmt').value,mom=$('#sMom').value,range=+$('#sRange').value;
+  const dur=+SET.duree,gap=+SET.pause,st=toMin(SET.debut),en=toMin(SET.fin),out=[];const now=new Date();
+  for(let i=0;i<range;i++){const d=new Date();d.setDate(now.getDate()+i);if(!SET.jours.includes(d.getDay()))continue;const k=ymd(d);
+    const busy=S.filter(s=>s.date===k&&s.statut!=='annulee').map(s=>[toMin(s.heure),toMin(s.heure)+(+s.duree||dur)]);
+    for(let t=st;t+dur<=en;t+=30){
+      if(i===0&&t<now.getHours()*60+now.getMinutes()+60)continue;
+      if(busy.some(([a,b])=>t<b+gap&&t+dur>a-gap))continue;
+      let score=100-i*2,why=[];
+      const adj=busy.some(([a,b])=>t===b+gap||t+dur+gap===a);if(adj){score+=25;why.push('enchaîne avec une autre séance')}
+      if(busy.length&&!adj){score+=8;why.push('jour déjà travaillé')}
+      if(!busy.length)why.push('journée libre');
+      const h=t/60,m=h<12.5?'matin':h<17?'apres-midi':'soir';if(mom){if(m===mom){score+=20;why.push('au moment préféré')}else score-=30}
+      let lt=null;if(fmt==='en ligne'&&p?.fuseau&&p.fuseau!=='Africa/Casablanca'){lt=localTime(k,toHM(t),p.fuseau);const lh=+lt.slice(0,2);if(lh<8||lh>=22){score-=40;why.push('trop tôt ou trop tard chez le patient')}else why.push('bonne heure chez le patient')}
+      out.push({k,t,score,why,lt});}}
+  out.sort((a,b)=>b.score-a.score||(a.k+a.t).localeCompare(b.k+b.t));
+  const pick=[];for(const o of out){if(pick.filter(x=>x.k===o.k).length<2)pick.push(o);if(pick.length>=6)break}
+  $('#sugg').innerHTML=pick.length?pick.map((o,i)=>`<div class="sg"><span class="chip ${i===0?'ok':''}" style="justify-self:start">${i===0?'Meilleur choix':'Alternative'}</span><div class="when">${esc(fmtShort(o.k))} · ${toHM(o.t)}</div><div class="why">${esc(o.why.join(' · '))}${o.lt?'<br>'+esc(o.lt):''}</div><button class="btn sm" data-k="${o.k}" data-t="${toHM(o.t)}" ${canWrite?'':'disabled'}>Réserver ce créneau</button></div>`).join('')
+    :`<div class="empty"><b>Aucun créneau libre</b>Élargissez la période ou ajustez les horaires du cabinet.</div>`;
+  $$('#sugg button').forEach(b=>b.onclick=()=>openSeance(null,{patientId:pid,date:b.dataset.k,heure:b.dataset.t,format:fmt}));
+}
+const TY={post:'Post',carousel:'Carrousel',quote:'Citation',Reel:'Reel',Stories:'Stories','Story animée':'Story animée'};
+function monthTabs(sel,cur,set){$(sel).innerHTML=C.months.map((m,i)=>`<button class="${i===cur?'on':''}" data-m="${i}">${esc(m.name)}</button>`).join('');$$(sel+' button').forEach(b=>b.onclick=()=>set(+b.dataset.m))}
+function rPlan(){if(!C){$('#planBox').innerHTML='<div class="empty"><b>Chargement…</b></div>';return}
+  monthTabs('#pTabs',pmonth,i=>{pmonth=i;rPlan()});
+  $('#planBox').innerHTML=C.months[pmonth].plan.map(w=>`<div class="pw"><h4>Semaine ${w.week}</h4>${w.items.map(it=>`<div class="pi"><span class="dd">${esc(it.day)}</span><span><span class="ty">${esc(TY[it.type]||it.type)}</span>${esc(it.title)}</span></div>`).join('')}</div>`).join('');}
+function rCamp(){
+  if(!C){$('#camp').innerHTML='<div class="empty"><b>Chargement de la campagne…</b></div>';return}
+  monthTabs('#mTabs',month,i=>{month=i;rCamp()});
+  const m=C.months[month];
+  $('#camp').innerHTML=`<p class="sub" style="margin:-6px 0 0"><b>Thème :</b> ${esc(m.theme)}</p>
+  <div class="sec"><h3>Vidéos <small>${m.videos.length} à tourner · Najlaa parle avec ses mots, à partir de l'idée</small></h3><div class="vid">${m.videos.map(v=>`<div class="vcard"><div class="vtop"><div class="vbox">À tourner</div><div><span class="chip warn">${esc(v.id)}</span><h3 style="margin-top:6px">${esc(v.title)}</h3></div></div><div class="hook">${esc(v.hook)}</div><ul>${v.points.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>`).join('')}</div></div>
+  <div class="sec"><h3>Posts, carrousels et citations <small>${m.posts.length} publications</small></h3><div class="cards">${m.posts.map(p=>`<div class="card">${p.images.length>1?`<div class="strip wide">${p.images.map(s=>`<img src="${esc(s)}" alt="" loading="lazy">`).join('')}</div>`:`<img src="${esc(p.images[0])}" alt="${esc(p.title)}" loading="lazy">`}<div class="body"><span class="chip" style="justify-self:start">${p.type==='carousel'?'Carrousel · '+p.images.length+' slides':TY[p.type]}</span><b>${esc(p.title)}</b><p>${esc(p.fr)}</p><details><summary>Légende complète</summary><p><b>FR</b> ${esc(p.fr)} ${esc(p.cta)}</p><p><b>EN</b> ${esc(p.en)}</p><p>${esc(p.tags)}</p></details></div></div>`).join('')}</div></div>
+  <div class="sec"><h3>Stories <small>${m.stories.reduce((a,s)=>a+s.images.length,0)} stories en ${m.stories.length} séries</small></h3><div class="grid">${m.stories.map(s=>`<div class="panel" style="padding:12px"><b>Série ${esc(s.series)} · ${esc(s.title)}</b><div class="strip" style="margin-top:8px;border-radius:8px">${s.images.map(x=>`<img src="${esc(x)}" alt="" loading="lazy">`).join('')}</div></div>`).join('')}</div></div>
+  <div class="sec"><h3>Stories animées <small>${m.motion.length} vidéos courtes</small></h3><div class="cards">${m.motion.map(v=>`<div class="card"><video src="${esc(v.src)}" controls muted playsinline preload="metadata" style="aspect-ratio:9/16"></video><div class="body"><b>${esc(v.title)}</b></div></div>`).join('')}</div></div>`;
+  $$('#camp img').forEach(i=>i.onclick=()=>lightbox(i.src));
+}
+function rAds(){if(!C){$('#ads').innerHTML='<div class="empty"><b>Chargement…</b></div>';return}
+  $('#adsets').innerHTML=C.adsets.map(a=>`<div class="panel"><b>Ad set ${esc(a.name)}</b><p><b>Où :</b> ${esc(a.where)}</p><p><b>Qui :</b> ${esc(a.who)}</p><p><b>Intérêts :</b> ${esc(a.interests)}</p></div>`).join('');
+  $('#adrules').innerHTML=C.adrules.map(r=>`<li>${esc(r)}</li>`).join('');
+  $('#ads').innerHTML=C.ads.map(a=>`<div class="card"><div class="strip wide" style="padding:0;gap:0"><img src="${esc(a.image)}" alt="${esc(a.topic)} feed" loading="lazy" style="width:60%;aspect-ratio:4/5;border-radius:0"><img src="${esc(a.story)}" alt="${esc(a.topic)} story" loading="lazy" style="width:40%;aspect-ratio:auto;object-fit:cover;border-radius:0"></div><div class="body"><span class="chip" style="justify-self:start">${esc(a.topic)}</span><b>${esc(a.fr)}</b><p>${esc(a.text)}</p><p><b>EN</b> ${esc(a.en)} · <b>ES</b> ${esc(a.es)}</p></div></div>`).join('');
+  $$('#ads img').forEach(i=>i.onclick=()=>lightbox(i.src));}
+function lightbox(src){const d=document.createElement('div');d.className='lb';d.innerHTML=`<img src="${esc(src)}" alt="">`;d.onclick=()=>d.remove();document.body.appendChild(d)}
+
+/* ---------- dialogs ---------- */
+const dlg=$('#dlg'),F=$('#dlgForm');
+const opt=(arr,v)=>arr.map(x=>`<option ${x===v?'selected':''}>${esc(x)}</option>`).join('');
+const stLabel=s=>s==='prevue'?'prévue':s==='annulee'?'annulée':'faite';
+function openPatient(id){
+  const p=id?pat(id):{nom:'',motif:MOTIFS[0],format:'cabinet',langue:'Français',fuseau:'Africa/Casablanca',tarif:SET.prix};
+  const ss=id?sOf(id).sort((a,b)=>(b.date+b.heure).localeCompare(a.date+a.heure)):[];
+  const paid=ss.filter(s=>s.paye&&s.statut!=='annulee').reduce((a,s)=>a+(+s.prix||0),0);
+  F.innerHTML=`<h2>${id?esc(p.nom):'Nouveau patient'}</h2>
+  <div class="fgrid">
+   <label class="full">Nom et prénom<input id="f-nom" required value="${esc(p.nom)}"></label>
+   <label>Téléphone / WhatsApp<input id="f-tel" value="${esc(p.tel)}"></label>
+   <label>E-mail<input id="f-mail" type="email" value="${esc(p.mail)}"></label>
+   <label>Motif de consultation<select id="f-motif">${opt(MOTIFS,p.motif)}</select></label>
+   <label>Format<select id="f-format">${opt(['cabinet','en ligne'],p.format)}</select></label>
+   <label>Langue<select id="f-langue">${opt(LANGS,p.langue)}</select></label>
+   <label>Ville / fuseau<select id="f-fuseau">${Object.entries(TZ).map(([k,v])=>`<option value="${k}" ${k===p.fuseau?'selected':''}>${v}</option>`).join('')}</select></label>
+   <label>Tarif par séance (${esc(SET.devise)})<input id="f-tarif" type="number" min="0" step="50" value="${esc(p.tarif)}"></label>
+   <label>Comment il nous a trouvés<input id="f-source" value="${esc(p.source)}" placeholder="Instagram, publicité, bouche-à-oreille…"></label>
+   <label class="full">Notes (privées)<textarea id="f-notes">${esc(p.notes)}</textarea></label>
+  </div>
+  ${id?`<div><h3>Séances <small class="muted" style="font-size:12px;font-weight:500">${ss.filter(s=>s.statut==='faite').length} faites · réglé ${esc(money(paid))}</small></h3><div class="list" style="margin-top:10px">${ss.map(s=>`<div class="item" data-sid="${esc(s.id)}" style="cursor:pointer"><div><div class="t">${esc(fmtDay(s.date))} · ${esc(s.heure)}</div><div class="d">${esc(s.format)} · ${esc(s.duree)} min · ${esc(money(s.prix))}</div></div><div style="display:flex;gap:6px;flex-wrap:wrap"><span class="chip ${s.statut==='faite'?'ok':s.statut==='annulee'?'bad':''}">${esc(stLabel(s.statut))}</span><span class="chip ${s.paye?'ok':'warn'}">${s.paye?'réglée':'non réglée'}</span></div></div>`).join('')||'<div class="muted">Aucune séance.</div>'}</div></div>`:''}
+  <div class="acts"><div style="display:flex;gap:8px">${id?`<button type="button" class="btn danger" id="f-del" ${canWrite?'':'disabled'}>Supprimer</button><button type="button" class="btn line" id="f-addS" ${canWrite?'':'disabled'}>+ Séance</button>`:''}</div><div style="display:flex;gap:8px"><button type="button" class="btn line" id="f-close">Fermer</button><button type="button" class="btn" id="f-save" ${canWrite?'':'disabled'}>Enregistrer</button></div></div>`;
+  dlg.showModal();
+  $('#f-close').onclick=()=>dlg.close();
+  $$('#dlgForm .item[data-sid]').forEach(el=>el.onclick=()=>{dlg.close();openSeance(S.find(s=>s.id===el.dataset.sid))});
+  if(id){$('#f-addS').onclick=()=>{dlg.close();openSeance(null,{patientId:id,format:p.format,prix:p.tarif})};
+    let armed=false;$('#f-del').onclick=async()=>{if(!armed){armed=true;$('#f-del').textContent='Confirmer la suppression';return}for(const s of sOf(id))await store.del('seances',s.id);await store.del('patients',id);dlg.close();toast('Patient supprimé')}}
+  $('#f-save').onclick=async()=>{const nom=$('#f-nom').value.trim();if(!nom){$('#f-nom').focus();return}
+    const body={nom,tel:$('#f-tel').value.trim(),mail:$('#f-mail').value.trim(),motif:$('#f-motif').value,format:$('#f-format').value,langue:$('#f-langue').value,fuseau:$('#f-fuseau').value,tarif:+$('#f-tarif').value||0,source:$('#f-source').value.trim(),notes:$('#f-notes').value,createdAt:p.createdAt||new Date().toISOString()};
+    try{await store.save('patients',id,body);dlg.close();toast('Patient enregistré')}catch(e){toast('Enregistrement impossible : '+(e.message||e.code))}};
+}
+function openSeance(s,pre={}){
+  const isNew=!s;s=s||{patientId:pre.patientId||'',date:pre.date||today,heure:pre.heure||SET.debut,duree:SET.duree,format:pre.format||'cabinet',prix:pre.prix??(pat(pre.patientId)?.tarif??SET.prix),paye:false,statut:'prevue',...pre};
+  F.innerHTML=`<h2>${isNew?'Nouvelle séance':'Séance'}</h2>
+  <div class="fgrid">
+   <label class="full">Patient<select id="s-pat" required><option value="">Choisir…</option>${P.slice().sort((a,b)=>(a.nom||'').localeCompare(b.nom||'')).map(p=>`<option value="${esc(p.id)}" ${p.id===s.patientId?'selected':''}>${esc(p.nom)}</option>`).join('')}</select></label>
+   <label>Date<input id="s-date" type="date" value="${esc(s.date)}"></label>
+   <label>Heure (Casablanca)<input id="s-heure" type="time" step="900" value="${esc(s.heure)}"></label>
+   <label>Durée (min)<input id="s-duree" type="number" min="30" step="15" value="${esc(s.duree)}"></label>
+   <label>Format<select id="s-format">${opt(['cabinet','en ligne'],s.format)}</select></label>
+   <label>Prix (${esc(SET.devise)})<input id="s-prix" type="number" min="0" step="50" value="${esc(s.prix)}"></label>
+   <label>Statut<select id="s-statut"><option value="prevue" ${s.statut==='prevue'?'selected':''}>Prévue</option><option value="faite" ${s.statut==='faite'?'selected':''}>Faite</option><option value="annulee" ${s.statut==='annulee'?'selected':''}>Annulée</option></select></label>
+   <label class="check full"><input id="s-paye" type="checkbox" ${s.paye?'checked':''}> Séance réglée</label>
+   <p class="note full" id="s-lt" style="margin:0"></p>
+  </div>
+  <div class="acts"><div>${isNew?'':`<button type="button" class="btn danger" id="s-del" ${canWrite?'':'disabled'}>Supprimer</button>`}</div><div style="display:flex;gap:8px"><button type="button" class="btn line" id="s-close">Fermer</button><button type="button" class="btn" id="s-save" ${canWrite?'':'disabled'}>Enregistrer</button></div></div>`;
+  dlg.showModal();
+  const upd=()=>{const p=pat($('#s-pat').value);const lt=p&&$('#s-format').value==='en ligne'?localTime($('#s-date').value,$('#s-heure').value,p.fuseau):null;
+    const clash=S.find(x=>x.id!==s.id&&x.statut!=='annulee'&&x.date===$('#s-date').value&&Math.abs(toMin(x.heure)-toMin($('#s-heure').value))<(+$('#s-duree').value||120));
+    $('#s-lt').textContent=[lt?'Heure chez le patient : '+lt:'',clash?'Attention : chevauche la séance de '+(pat(clash.patientId)?.nom||'—')+' à '+clash.heure:''].filter(Boolean).join(' · ')};
+  ['#s-date','#s-heure','#s-format','#s-duree'].forEach(k=>$(k).oninput=upd);upd();
+  $('#s-pat').onchange=()=>{const p=pat($('#s-pat').value);if(p&&isNew){$('#s-prix').value=p.tarif??SET.prix;$('#s-format').value=p.format}upd()};
+  $('#s-close').onclick=()=>dlg.close();
+  if(!isNew){let armed=false;$('#s-del').onclick=async()=>{if(!armed){armed=true;$('#s-del').textContent='Confirmer';return}await store.del('seances',s.id);dlg.close();toast('Séance supprimée')}}
+  $('#s-save').onclick=async()=>{const pid=$('#s-pat').value;if(!pid){$('#s-pat').focus();return}
+    const body={patientId:pid,date:$('#s-date').value,heure:$('#s-heure').value,duree:+$('#s-duree').value||120,format:$('#s-format').value,prix:+$('#s-prix').value||0,statut:$('#s-statut').value,paye:$('#s-paye').checked};
+    try{await store.save('seances',isNew?null:s.id,body);dlg.close();toast('Séance enregistrée')}catch(e){toast('Enregistrement impossible : '+(e.message||e.code))}};
+}
+function openSettings(){
+  const D=['Dim','Lun','Mar','Mer','Jeu','Ven','Sam'];
+  F.innerHTML=`<h2>Horaires du cabinet</h2>
+  <div class="fgrid">
+   <div class="full" style="display:flex;gap:12px;flex-wrap:wrap">${[1,2,3,4,5,6,0].map(d=>`<label class="check"><input type="checkbox" data-d="${d}" ${SET.jours.includes(d)?'checked':''}> ${D[d]}</label>`).join('')}</div>
+   <label>Début<input id="c-deb" type="time" value="${esc(SET.debut)}"></label><label>Fin<input id="c-fin" type="time" value="${esc(SET.fin)}"></label>
+   <label>Durée d'une séance (min)<input id="c-dur" type="number" min="30" step="15" value="${esc(SET.duree)}"></label><label>Pause entre séances (min)<input id="c-pau" type="number" min="0" step="5" value="${esc(SET.pause)}"></label>
+   <label>Tarif par défaut<input id="c-prix" type="number" min="0" step="50" value="${esc(SET.prix)}"></label><label>Devise<select id="c-dev">${opt(['MAD','EUR','USD','GBP','AED'],SET.devise)}</select></label>
+  </div>
+  <div class="acts"><span></span><div style="display:flex;gap:8px"><button type="button" class="btn line" id="c-close">Fermer</button><button type="button" class="btn" id="c-save" ${canWrite?'':'disabled'}>Enregistrer</button></div></div>`;
+  dlg.showModal();$('#c-close').onclick=()=>dlg.close();
+  $('#c-save').onclick=async()=>{const body={jours:$$('#dlgForm [data-d]').filter(x=>x.checked).map(x=>+x.dataset.d),debut:$('#c-deb').value,fin:$('#c-fin').value,duree:+$('#c-dur').value||120,pause:+$('#c-pau').value||0,prix:+$('#c-prix').value||0,devise:$('#c-dev').value};
+    try{await store.saveSettings(body);dlg.close();toast('Horaires enregistrés')}catch(e){toast('Enregistrement impossible')}};
+}
+document.addEventListener('click',e=>{const b=e.target.closest('[data-act]');if(!b||b.disabled)return;({newPatient:()=>openPatient(null),newSeance:()=>openSeance(null),settings:openSettings})[b.dataset.act]()});
+$('#q').oninput=()=>rPatients();
+$('#wPrev').onclick=()=>{wOff--;rAgenda()};$('#wNext').onclick=()=>{wOff++;rAgenda()};$('#wToday').onclick=()=>{wOff=0;rAgenda()};
+$('#sGo').onclick=suggest;
+
+fetch('campaign.json').then(r=>r.json()).then(j=>{C=j;render()}).catch(()=>{});
+route();store.init();
+</script>
+</body></html>
