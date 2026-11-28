@@ -1003,6 +1003,7 @@ if(window.Lenis&&!RM){lenis=new Lenis({duration:1.25,easing:t=>Math.min(1,1.001-
 
 /* --- Boot --- */
 let saved='fr';try{saved=localStorage.getItem('nh-lang')||'fr'}catch(e){}
+const qLang=new URLSearchParams(location.search).get('lang');if(qLang==='en'||qLang==='fr')saved=qLang;
 setLang(T[saved]?saved:'fr');bindMag();onScroll();
 function start(){const l=document.getElementById('loader');if(l.classList.contains('done'))return;l.classList.add('done');if(lenis)lenis.start();setTimeout(()=>l.classList.add('gone'),1200);document.body.classList.remove('locked');setTimeout(()=>document.querySelector('.hero').classList.add('go'),RM?0:350)}
 addEventListener('load',()=>setTimeout(start,RM?0:900));setTimeout(start,2500);
