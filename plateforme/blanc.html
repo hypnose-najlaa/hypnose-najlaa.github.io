@@ -137,7 +137,7 @@ ul.rules{margin:10px 0 0;padding-left:18px;color:var(--mute);font-size:13px}
 .note{font-size:12.5px;color:var(--mute)}
 .toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--dark);color:var(--panel);padding:10px 18px;border-radius:30px;font-size:13px;z-index:60}
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
-.tosite{font-size:12px;font-weight:600;letter-spacing:.04em;color:inherit;text-decoration:none;border:1px solid currentColor;border-radius:999px;padding:6px 12px;opacity:.75}.tosite:hover{opacity:1}
+.nbadge{display:inline-block;min-width:18px;padding:1px 6px;margin-left:4px;border-radius:999px;background:#b4533a;color:#fff;font-size:11px;font-weight:700;line-height:16px;text-align:center}.leads{display:grid;gap:12px}.lead{display:grid;grid-template-columns:1.2fr 1fr auto;gap:14px 20px;align-items:start}.lead .who b{font-size:16px}.lead .who a{color:inherit}.lead .meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}.lead .msg{font-size:14px;line-height:1.55;white-space:pre-wrap}.lead .acts2{display:flex;flex-direction:column;gap:8px;min-width:170px}.lead.new{box-shadow:inset 3px 0 0 #b4533a}@media(max-width:800px){.lead{grid-template-columns:1fr}.lead .acts2{min-width:0}}.tosite{font-size:12px;font-weight:600;letter-spacing:.04em;color:inherit;text-decoration:none;border:1px solid currentColor;border-radius:999px;padding:6px 12px;opacity:.75}.tosite:hover{opacity:1}
 </style>
 
 <header>
@@ -148,6 +148,7 @@ ul.rules{margin:10px 0 0;padding-left:18px;color:var(--mute);font-size:13px}
     </div>
     <nav id="nav">
       <a href="#tableau" data-v="tableau">Tableau de bord</a>
+      <a href="#demandes" data-v="demandes">Demandes <span class="nbadge" id="ldBadge" hidden></span></a>
       <a href="#patients" data-v="patients">Patients</a>
       <a href="#agenda" data-v="agenda">Agenda &amp; créneaux</a>
       <a href="#planning" data-v="planning">Planning réseaux</a>
@@ -167,6 +168,12 @@ ul.rules{margin:10px 0 0;padding-left:18px;color:var(--mute);font-size:13px}
       <div class="panel"><h3>Prochaines séances</h3><div id="nextList" class="list" style="margin-top:12px"></div></div>
       <div class="panel"><h3>Motifs de consultation</h3><div id="motifs" style="margin-top:12px"></div></div>
     </div>
+  </section>
+
+  <section id="v-demandes" hidden>
+    <div class="head"><div><h1>Demandes</h1><p class="sub">Les personnes qui ont rempli le formulaire du site (publicités, Instagram, Google…). Rappelez-les, puis créez leur fiche patient en un clic.</p></div>
+      <div class="tools"><label>Afficher<select id="ldFilter"><option value="actives">À traiter</option><option value="toutes">Toutes</option><option value="nouveau">Nouvelles</option><option value="contacte">Contactées</option><option value="rdv">RDV pris</option><option value="patient">Devenues patients</option><option value="sans_suite">Sans suite</option></select></label><button class="btn line" id="ldRefresh">Actualiser</button></div></div>
+    <div id="ldBox"></div>
   </section>
 
   <section id="v-patients" hidden>
@@ -283,13 +290,13 @@ function demoSeed(){const d=n=>{const x=new Date();x.setDate(x.getDate()+n);retu
   return {patients:p,seances:s,settings:{...DEF}}}
 
 /* ---------- routing ---------- */
-const VIEWS=['tableau','patients','agenda','planning','campagne','pubs'];
+const VIEWS=['tableau','demandes','patients','agenda','planning','campagne','pubs'];
 function route(){const h=location.hash.slice(1);view=VIEWS.includes(h)?h:'tableau';
   $$('main>section').forEach(s=>s.hidden=s.id!=='v-'+view);$$('#nav a').forEach(a=>a.classList.toggle('on',a.dataset.v===view));render();}
 addEventListener('hashchange',route);
 
 /* ---------- renders ---------- */
-function render(){({tableau:rDash,patients:rPatients,agenda:rAgenda,planning:rPlan,campagne:rCamp,pubs:rAds})[view]();
+function render(){({tableau:rDash,demandes:rLeads,patients:rPatients,agenda:rAgenda,planning:rPlan,campagne:rCamp,pubs:rAds})[view]();
   $$('[data-act]').forEach(b=>b.disabled=!canWrite);}
 function rDash(){
   const done=S.filter(s=>s.statut==='faite'), up=S.filter(s=>s.statut==='prevue'&&s.date>=today).sort((a,b)=>(a.date+a.heure).localeCompare(b.date+b.heure));
@@ -297,7 +304,8 @@ function rDash(){
   const due=S.filter(s=>!s.paye&&s.statut==='faite').reduce((a,s)=>a+(+s.prix||0),0);
   const m=today.slice(0,7), mPaid=S.filter(s=>s.paye&&s.statut!=='annulee'&&(s.date||'').startsWith(m)).reduce((a,s)=>a+(+s.prix||0),0);
   const online=P.filter(p=>p.format==='en ligne').length;
-  $('#kpis').innerHTML=[['Patients',P.length,`${online} en ligne · ${P.length-online} au cabinet`],['Séances faites',done.length,`${up.length} à venir`],['Encaissé',money(paid),`ce mois-ci : ${money(mPaid)}`],['Reste à encaisser',money(due),'séances faites non réglées']]
+  const nNew=(LEADS||[]).filter(l=>l.statut==='nouveau').length;
+  $('#kpis').innerHTML=[...(LEADS?[['Nouvelles demandes',nNew,'formulaire du site']]:[]),['Patients',P.length,`${online} en ligne · ${P.length-online} au cabinet`],['Séances faites',done.length,`${up.length} à venir`],['Encaissé',money(paid),`ce mois-ci : ${money(mPaid)}`],['Reste à encaisser',money(due),'séances faites non réglées']]
     .map(([l,n,s])=>`<div class="panel kpi"><div class="l">${l}</div><div class="n">${esc(n)}</div><div class="s">${esc(s)}</div></div>`).join('');
   $('#nextList').innerHTML=up.length?up.slice(0,6).map(s=>{const p=pat(s.patientId);const lt=p&&s.format==='en ligne'?localTime(s.date,s.heure,p.fuseau):null;
     return `<div class="item"><div><div class="t">${esc(p?.nom||'Patient supprimé')}</div><div class="d">${esc(fmtDay(s.date))} · ${esc(s.heure)} (${esc(s.duree)} min)${lt?' · '+esc(lt):''}</div></div><span class="chip ${s.format==='en ligne'?'':'ok'}">${esc(s.format)}</span></div>`}).join('')
@@ -447,6 +455,52 @@ document.addEventListener('click',e=>{const b=e.target.closest('[data-act]');if(
 $('#q').oninput=()=>rPatients();
 $('#wPrev').onclick=()=>{wOff--;rAgenda()};$('#wNext').onclick=()=>{wOff++;rAgenda()};$('#wToday').onclick=()=>{wOff=0;rAgenda()};
 $('#sGo').onclick=suggest;
+
+
+/* ---------- website requests (Hostinger API) ---------- */
+const API='../api/leads.php';
+let LEADS=null, LD_ERR='';
+const LD_ST={nouveau:['Nouvelle','bad'],contacte:['Contactée','warn'],rdv:['RDV pris','ok'],patient:['Devenue patient','ok'],sans_suite:['Sans suite','']};
+const ldKey=()=>{try{return localStorage.getItem('nh-key')||''}catch(e){return ''}};
+async function ldFetch(opts={}){const r=await fetch(API,{...opts,headers:{'Content-Type':'application/json','X-NH-Key':ldKey(),...(opts.headers||{})},cache:'no-store'});
+  if(r.status===401)throw new Error('auth');if(!r.ok)throw new Error('http');return r.json()}
+async function loadLeads(){if(!ldKey()){LEADS=null;LD_ERR='key';render();return}
+  try{const j=await ldFetch();LEADS=j.leads||[];LD_ERR=''}catch(e){LD_ERR=e.message==='auth'?'badkey':(location.protocol==='file:'||MODE!=='demo'?'offline':'net')}
+  const n=(LEADS||[]).filter(l=>l.statut==='nouveau').length;const b=$('#ldBadge');if(b){b.hidden=!n;b.textContent=n}render()}
+function rLeads(){const box=$('#ldBox');
+  if(LD_ERR==='key'||LD_ERR==='badkey'){box.innerHTML=`<div class="panel" style="max-width:520px"><h3>Code d'accès</h3><p class="note" style="margin:8px 0 14px">Les demandes sont privées. Entrez le code d'accès du cabinet (une seule fois sur cet appareil).</p>${LD_ERR==='badkey'?'<p class="note" style="color:#b4533a;margin-bottom:10px">Code incorrect.</p>':''}<div class="tools"><label style="flex:1">Code<input id="ldKeyIn" autocomplete="off" placeholder="NH-…"></label><button class="btn" id="ldKeyBtn">Ouvrir</button></div></div>`;
+    $('#ldKeyBtn').onclick=()=>{const v=$('#ldKeyIn').value.trim();if(!v)return;try{localStorage.setItem('nh-key',v)}catch(e){}loadLeads()};
+    $('#ldKeyIn').onkeydown=e=>{if(e.key==='Enter')$('#ldKeyBtn').click()};return}
+  if(LD_ERR==='offline'){box.innerHTML=`<div class="empty"><b>Demandes disponibles sur la version en ligne</b>Ouvrez la plateforme depuis le site hébergé sur Hostinger pour voir les demandes du formulaire.</div>`;return}
+  if(LD_ERR==='net'){box.innerHTML=`<div class="empty"><b>Impossible de charger les demandes</b>Vérifiez la connexion, puis cliquez sur « Actualiser ».</div>`;return}
+  if(!LEADS){box.innerHTML='<div class="empty"><b>Chargement…</b></div>';return}
+  const f=$('#ldFilter').value;const rows=LEADS.filter(l=>f==='toutes'||(f==='actives'?['nouveau','contacte','rdv'].includes(l.statut):l.statut===f));
+  if(!rows.length){box.innerHTML=`<div class="empty"><b>${LEADS.length?'Aucune demande dans ce filtre':'Aucune demande pour l\'instant'}</b>Dès qu'une personne remplit le formulaire du site, sa demande apparaît ici.</div>`;return}
+  const dt=s=>new Date(s).toLocaleString('fr-FR',{weekday:'short',day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'});
+  const wa=t=>'https://wa.me/'+String(t||'').replace(/\D/g,'').replace(/^00/,'');
+  box.innerHTML='<div class="leads">'+rows.map(l=>{const st=LD_ST[l.statut]||[l.statut,''];return `<div class="panel lead ${l.statut==='nouveau'?'new':''}" data-id="${esc(l.id)}">
+    <div class="who"><b>${esc(l.nom)}</b><div class="muted" style="font-size:12px;margin-top:2px">${esc(dt(l.date))}${l.source?' · '+esc(l.source):''}</div>
+      <div style="margin-top:10px;font-size:14px;line-height:1.7"><a href="tel:${esc(String(l.tel).replace(/[^\d+]/g,''))}">${esc(l.tel)}</a> · <a href="${esc(wa(l.tel))}" target="_blank" rel="noopener">WhatsApp</a>${l.mail?`<br><a href="mailto:${esc(l.mail)}">${esc(l.mail)}</a>`:''}</div>
+      <div class="meta">${l.motif?`<span class="chip">${esc(l.motif)}</span>`:''}${l.format?`<span class="chip">${esc(l.format)}</span>`:''}${l.langue?`<span class="chip">${esc(l.langue)}</span>`:''}${l.pays?`<span class="chip">${esc(l.pays)}</span>`:''}${l.moment&&l.moment!=='peu importe'?`<span class="chip">rappel : ${esc(l.moment)}</span>`:''}</div></div>
+    <div><div class="msg">${l.message?esc(l.message):'<span class="muted">Pas de message.</span>'}</div>
+      <label style="display:block;margin-top:10px;font-size:12px" class="muted">Note interne<textarea class="ldNote" rows="2" style="width:100%;margin-top:4px">${esc(l.note||'')}</textarea></label></div>
+    <div class="acts2"><span class="chip ${st[1]}" style="align-self:flex-start">${esc(st[0])}</span>
+      <select class="ldSt">${Object.entries(LD_ST).map(([k,v])=>`<option value="${k}" ${k===l.statut?'selected':''}>${v[0]}</option>`).join('')}</select>
+      <button class="btn sm ldPat" ${canWrite?'':'disabled'}>Créer la fiche patient</button>
+      <button class="btn line sm ldDel">Supprimer</button></div></div>`}).join('')+'</div>';
+  $$('#ldBox .lead').forEach(card=>{const id=card.dataset.id;const l=LEADS.find(x=>x.id===id);
+    const upd=async body=>{try{await ldFetch({method:'POST',body:JSON.stringify({id,action:'update',...body})});Object.assign(l,body);toast('Demande mise à jour');loadLeads()}catch(e){toast('Mise à jour impossible')}};
+    card.querySelector('.ldSt').onchange=e=>upd({statut:e.target.value});
+    card.querySelector('.ldNote').onchange=e=>upd({note:e.target.value});
+    let armed=false;card.querySelector('.ldDel').onclick=async e=>{if(!armed){armed=true;e.target.textContent='Confirmer';return}
+      try{await ldFetch({method:'POST',body:JSON.stringify({id,action:'delete'})});toast('Demande supprimée');loadLeads()}catch(_){toast('Suppression impossible')}};
+    card.querySelector('.ldPat').onclick=async()=>{const motif=MOTIFS.includes(l.motif)?l.motif:'Autre';
+      const body={nom:l.nom,tel:l.tel,mail:l.mail||'',motif,format:l.format==='en ligne'?'en ligne':'cabinet',langue:l.langue==='English'?'English':'Français',fuseau:'Africa/Casablanca',tarif:SET.prix,source:'Formulaire du site'+(l.source?' · '+l.source:''),notes:[l.pays?'Pays / ville : '+l.pays:'',l.message?'Message : '+l.message:'',l.note?'Note : '+l.note:''].filter(Boolean).join('\n'),createdAt:new Date().toISOString()};
+      try{await store.save('patients',null,body);await upd({statut:'patient'});toast('Fiche patient créée')}catch(e){toast('Création impossible')}};
+  });
+}
+$('#ldFilter').onchange=()=>rLeads();$('#ldRefresh').onclick=()=>loadLeads();
+loadLeads();setInterval(()=>{if(ldKey()&&!LD_ERR)loadLeads()},120000);
 
 fetch('campaign.json').then(r=>r.json()).then(j=>{C=j;render()}).catch(()=>{});
 route();store.init();
